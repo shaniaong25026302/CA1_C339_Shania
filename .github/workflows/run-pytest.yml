@@ -13,15 +13,6 @@ on:
     
   workflow_dispatch:
 
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'library_fine.py'
-      - 'library_eligibility.py'
-      - 'tests/**'
-      - '.github/workflows/**'
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
