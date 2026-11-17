@@ -1,0 +1,48 @@
+
+name: Run pytest
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'library_fine.py'
+      - 'library_eligibility.py'
+      - 'tests/**'
+      - '.github/workflows/**'
+    
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'library_fine.py'
+      - 'library_eligibility.py'
+      - 'tests/**'
+      - '.github/workflows/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pytest
+        run: python -m pip install pytest
+
+      - name: Run pytest
+        run: python -m pytest
+
