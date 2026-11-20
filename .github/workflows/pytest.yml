@@ -8,7 +8,7 @@ on:
       - 'library_fine.py'
       - 'library_eligibility.py'
       - 'tests/**/*.py'
-      - '.github/workflows/run-pytest.yml'
+      - '.github/workflows/pytest.yml'
     
   workflow_dispatch:
 
